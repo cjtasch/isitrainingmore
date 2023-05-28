@@ -1,5 +1,5 @@
 .blur{
-    background-image: url(./assets/background.jpg);
+    background-image: url(https://images.unsplash.com/photo-1552486289-7a93ac6d69a5?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&dl=halanna-halila-8lQyd8wEAzI-unsplash.jpg);
     background-size:cover;
     position: fixed;
   z-index: -1;
