@@ -1,6 +1,6 @@
 .blur{
-/*     background-image: url(./assets/background.jpg);
- */    background-size:cover;
+    background-image: url(./assets/background.jpg);
+    background-size:cover;
     position: fixed;
   z-index: -1;
   margin: 0;
