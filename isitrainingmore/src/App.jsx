@@ -1,5 +1,6 @@
 //import '@picocss/pico'
 import { useState } from 'react'
+import { CardIsitRainingMore } from './CardIsItRainingMore'
 
 function App() {
   const [Lat, setLat] = useState("")
@@ -30,9 +31,6 @@ function App() {
     console.log(oneYearTwoWeeksAgo.toISOString(8601).split('T', 1)[0])
 
 
-
-
-
     let rainfallPast = await fetch(
       'https://archive-api.open-meteo.com/v1/archive?latitude=' + Lat +
       '&longitude=' + Long +
@@ -49,10 +47,6 @@ function App() {
 
     const rainfallCurrentJson = await rainfallCurrent.json()
     const rainfallPastJson = await rainfallPast.json()
-
-
-
-
 
 
     let rainfallCurrentSum = 0;
@@ -103,16 +97,7 @@ function App() {
 
         </article>
 
-        <article>
-          <h1>{isItRainingMore}</h1>
-          <div className="grid">
-        <div>Recently it Rained {} Inches</div>
-        <div>A year ago it rained {} Inches</div>
-          </div>
-          <div className="grid">
-
-          </div>
-        </article>
+        {isItRainingMore != ""?<CardIsitRainingMore isRainMore={isItRainingMore}/>:null}
       </main>
 
     </>
