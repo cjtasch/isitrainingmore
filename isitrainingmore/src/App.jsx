@@ -67,16 +67,16 @@ function App() {
 
     setIsRainingMore(rainfallCurrentSum > rainfallPastSum ? "Yes!" : "No");
 
-    console.log(rainfallCurrentSum, rainfallPastSum, isItRainingMore)
+    console.log(rainfallCurrentSum, rainfallPastSum)
   }
 
 
   return (
     <>
-      { }
+    <div className="blur"></div>
       <main className="container">
-        <h1>Is it raining more than last year?</h1>
         <article>
+        <h1>Is it raining more than last year?</h1>
           <form onSubmit={handleSubmit}>
             <div className='grid'>
               <input type="text" id="lat" name="lat" placeholder="Latitude" value={Lat} onChange={e => setLat(e.target.value)}></input>
