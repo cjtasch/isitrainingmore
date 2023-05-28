@@ -6,7 +6,7 @@ function App() {
   const [Long, setLong] = useState("")
 
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault()
 
 
@@ -29,19 +29,49 @@ function App() {
 
 
 
-    let rainfallPast = fetch(
+    let rainfallPast = await fetch(
       'https://archive-api.open-meteo.com/v1/archive?latitude=' + Lat +
       '&longitude=' + Long +
       '&start_date=' + oneYearTwoWeeksAgo.toISOString(8601).split('T', 1)[0] +
       '&end_date=' + oneYearAgo.toISOString(8601).split('T', 1)[0] +
       '&daily=rain_sum&timezone=America%2FChicago&precipitation_unit=inch')
       
-    let rainfallCurrent = fetch(
+    let rainfallCurrent = await fetch(
       'https://archive-api.open-meteo.com/v1/archive?latitude=' + Lat +
       '&longitude=' + Long +
       '&start_date=' + twoWeeksAgo.toISOString(8601).split('T', 1)[0] +
       '&end_date=' + eightDaysAgo.toISOString(8601).split('T', 1)[0] +
       '&daily=rain_sum&timezone=America%2FChicago&precipitation_unit=inch')
+
+      const rainfallCurrentJson = await rainfallCurrent.json()
+      const rainfallPastJson = await rainfallPast.json()
+
+
+   
+
+
+
+    let rainfallCurrentSum = 0;
+    let currentDaily = rainfallCurrentJson.daily
+    let n = 0;
+    for(n =0; n < currentDaily.rain_sum.length - 1 ; n++)
+    {
+      rainfallCurrentSum += currentDaily.rain_sum[n];
+    }
+
+
+    let rainfallPastSum = 0;
+    let pastDaily = rainfallPastJson.daily
+    let i = 0;
+    for(i =0; i < pastDaily.rain_sum.length-1; i++)
+    {
+      rainfallPastSum += pastDaily.rain_sum[i];
+    }
+
+
+    let isItRainingMore = rainfallCurrentSum > rainfallPastSum ? "Yes" : "No"
+
+    console.log(rainfallCurrentSum, rainfallPastSum, isItRainingMore)
   }
 
 
